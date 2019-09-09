@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="林泽荣 个人博客 blog 应届生" >
+    <meta name="description">
+    <meta name="author" content="林泽荣/Lin_k_Bill@163.com">
+    <title>首页</title>
+    <script src="./jquery.min.js"></script>
+    <script src="./bootstrap.js"></script>
+    <script src="./vue.js"></script>
+    <script src="./js/ajax.js"></script>
+	<script src="./js/super.js"></script>
+
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./bootstrap.css">
+    <link rel="stylesheet" href="./css/side.css">
+    <link rel="stylesheet" href="./css/content.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/biji.css">
+	<link rel="stylesheet" href="../bower_components/animate.css/animate.css">
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+        body{height: 100%;width: 100%;overflow-x: hidden;}
+        /* body::-webkit-scrollbar {
+            display: none;
+        } */
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body v-cloak>
+    <!-- 头部 -->
+    <header></header>
+
+    <!-- 侧边栏 -->
+    <!-- <div id="side" v-mouse transition="side" @mouseover="over"> -->
+	<div id="side">
+        <img src="./image/头像.jpg" alt="portrait">
+<!--        <input type="button" value="登陆" class="btn btn-primary" id="login">
+        <input type="button" value="注册" class="btn btn-primary" id="res"> -->
+		<button type="button" class="btnForNav" @click="btnNav(1),out(),nav_Home()" id="nav_a">首页</button>
+		<button type="button" class="btnForNav" @click="nav_Blog(),btnNav(2)" id="nav_b">博客</button>
+		<button type="button" class="btnForNav" @click="btnNav(3),out(),nav_Resource()" id="nav_c">资源</button>
+
+		<div id="resDown" v-show="resDown" transition="bounce" class="animated">
+		<a id="resDownA" href="#" :class="$index==index?'dropdown-item resourceDown arrPu':'dropdown-item resourceDown'" v-for="item in downList" @click="arrPush($index)">{{item.name}}</a>		
+		</div>
+
+
+
+ <!--       <p id="introduction" v-show="sideBtn">
+        <span style="position: relative;left:100px;"></span><br/>
+        </p> -->
+    </div>
+
+<!-- 中心内容区 -->
+<div id="content">
+    <!-- 目录区 -->
+    <div id="directory" v-show="sideBtn" transition="fade" class="animated">
+        <div id="sideBtn" ><span v-show="sideBtn" @click="out"  @mousedown.prevent ><</span></div>
+        <bill></bill>
+    </div>
+
+    <!-- 内容区 -->
+    <div id="text">
+		<div id="home" v-show="home">
+			<iframe align="center" height="600px" src="./home.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+		</div>
+        <div id="blog" v-show="blog">
+        	<div id="a">
+        	    <iframe align="center" height="1300px" src="./笔记/一列布局.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+        	</div>
+        	<div id="b">
+        	    <iframe align="center" height="2115px" src="./笔记/初学Vue（五）--双向绑定.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+        	</div>
+        	<div id="c">
+        	        <iframe align="center" height="12590px" src="./笔记/初学Vue（一）.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="d">
+        	        <iframe align="center" height="9073px" src="./笔记/初学Vue（二）-- 模板、属性、class.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="e">
+        	        <iframe align="center" height="3545px" src="./笔记/初学Vue（三）-- Vue前后端数据交互插件.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="f">
+        	        <iframe align="center" height="1582px" src="./笔记/初学Vue（四）--计算属性与监视方法.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="g">
+        	        <iframe align="center" height="3402px" src="./笔记/一些样式.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="h">
+        	        <iframe align="center" height="2537px" src="./笔记/一些tag的使用.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="i">
+        	        <iframe align="center" height="1884px" src="./笔记/一些css样式.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="j">
+        	        <iframe align="center" height="1736px" src="./笔记/PHP规则.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="k">
+        	        <iframe align="center" height="5090px" src="./笔记/input标签.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="l">
+        	        <iframe align="center" height="3000px" src="./笔记/div-section-article标签的同异.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="m">
+        	        <iframe align="center" height="1332px" src="./笔记/图片的三种格式.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        	<div id="n">
+        	        <iframe align="center" height="1200px" src="./笔记/按照特殊性优先级排名.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>        
+        	</div>
+        </div>
+		<div id="resource" v-show="resource">
+			<!-- <iframe align="center" height="800px" src="./resource.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> -->
+			<iframe align="center" height="900px" :src="downList[index].path" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+		</div>
+    </div>
+</div>
+
+    <!-- 脚部 -->
+    <footer></footer>
+
+    <script>
+// res.onclick=function() {
+//             ajax({
+//                 url:'http://localhost:1234/res',
+//                 type:'get',
+//                 data: {
+//                     user:user.value,
+//                     pass:pass.value
+//                 },
+//                 success:function(data){
+//                     console.log(data);
+//                 }
+//             })
+//         }
+// 
+//         login.onclick=function(){
+//             ajax({
+//                 url:'http://localhost:1234/login',
+//                 type:'get',
+//                 data:{
+//                     user:user.value,
+//                     pass:pass.value
+//                 },
+//                 success:function(data){
+//                     console.log(data);
+//                 }
+//             })
+//         }
+	// var click_cnt = 0;
+	// var $html = document.getElementsByTagName("html")[0];
+	// var $body = document.getElementsByTagName("body")[0];
+	// $html.onclick = function(e) {
+	// 	var $elem = document.createElement("b");
+	// 	$elem.style.color = "#E94F06";
+	// 	$elem.style.zIndex = 9999;
+	// 	$elem.style.position = "absolute";
+	// 	$elem.style.select = "none";
+	// 	var x = e.pageX;
+	// 	var y = e.pageY;
+	// 	$elem.style.left = (x - 10) + "px";
+	// 	$elem.style.top = (y - 20) + "px";
+	// 	clearInterval(anim);
+	// 	switch (++click_cnt) {
+	// 		case 10:
+	// 			$elem.innerText = "OωO";
+	// 			break;
+	// 		case 20:
+	// 			$elem.innerText = "(๑•́ ∀ •̀๑)";
+	// 			break;
+	// 		case 30:
+	// 			$elem.innerText = "(๑•́ ₃ •̀๑)";
+	// 			break;
+	// 		case 40:
+	// 			$elem.innerText = "(๑•̀_•́๑)";
+	// 			break;
+	// 		case 50:
+	// 			$elem.innerText = "（￣へ￣）";
+	// 			break;
+	// 		case 60:
+	// 			$elem.innerText = "(╯°口°)╯(┴—┴";
+	// 			break;
+	// 		case 70:
+	// 			$elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+	// 			break;
+	// 		case 80:
+	// 			$elem.innerText = "╮(｡>口<｡)╭";
+	// 			break;
+	// 		case 90:
+	// 			$elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+	// 			break;
+	// 		case 100:
+	// 		case 101:
+	// 		case 102:
+	// 		case 103:
+	// 		case 104:
+	// 		case 105:
+	// 			$elem.innerText = "(ꐦ°᷄д°᷅)";
+	// 			break;
+	// 		default:
+	// 	// 手动更换下面这行双引号里面的内容 如"😀"
+	// 			$elem.innerText = "❤";
+	// 			break;
+	// 	}
+	// 	$elem.style.fontSize = Math.random() * 10 + 8 + "px";
+	// 	var increase = 0;
+	// 	var anim;
+	// 	setTimeout(function() {
+	// 		anim = setInterval(function() {
+	// 			if (++increase == 150) {
+	// 				clearInterval(anim);
+	// 		$body.removeChild($elem);
+	// 			}
+	// 			$elem.style.top = y - 20 - increase + "px";
+	// 			$elem.style.opacity = (150 - increase) / 120;
+	// 		}, 8);
+	// 	}, 70);
+	// 	$body.appendChild($elem);
+	// };
+    </script>
+</body>
+</html>

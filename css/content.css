@@ -1,0 +1,60 @@
+#content{
+    /* background: black; */
+    height: 100%;
+    width: 100%;
+    position: relative;
+    left: 100px;
+}
+
+#directory{
+    width: 320px;
+    height: 100%;
+    border-right: 1px dashed black;
+    /* background: rgba(179, 229, 252, 0.2); */
+    /* background: #B3E5FC; */
+    position: fixed;
+    left: 99px;
+    z-index: 2;
+	opacity: 1;
+}
+	
+
+#sideBtn{
+    width: 0px;
+    background-color: #BBDEFB;
+    font-size: 60px;
+    color: #90CAF9;
+    margin-left: 0%;
+    cursor: pointer;
+}
+
+
+
+#text{
+    position: relative;
+    left: 400px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    width: 800px;   
+}
+
+#home {
+	overflow: hidden;
+	margin-left: -200px;
+}
+
+#directoryText > button{
+    width: 272px;
+}
+
+/*
+tab 面板的类
+*/
+.active{
+   box-shadow: 10px 10px 5px gray;
+   background: rgba(179, 229, 252, 0.2);
+}
+
+#resource{
+	margin-left: -210px;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/vue2.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="./bootstrap.css">
+		<style>
+			#font > p{
+				font-size: 50px;
+				text-align: center;
+			}
+			.danger:hover {
+				background: #f2dede;
+			}
+			.success:hover {
+				background: #dff0d8;
+			}
+			.head{
+				background: #f5f5f5;
+			}
+			a{
+				text-decoration: none;	
+			}
+			a:hover{
+				text-decoration: none;
+				color: #ee7711;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<table class="table table-condensed">
+				<tr class="head">
+					<th scope="row">#</th>
+					<th>代码名称</th>
+				</tr>
+				<tr :class="item.className" v-for="item in arr">
+					<th scope="row">{{item.Num}}</th>
+					<td><a :href="item.path" target="_blank">{{item.name}}</a></td>
+				</tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',
+				data:{
+					arr:[
+						{Num:'',className:'',name:'Vue学习笔记',path:'https://github.com/Bill70058/vue-note',judge:''},
+						{Num:'',className:'',name:'node.js学习笔记',path:'https://github.com/Bill70058/node-Note',judge:''},
+						{Num:'',className:'',name:'小程序学习项目',path:'https://github.com/Bill70058/MiniProgram_douban',judge:''},
+					]
+				},
+				methods: {
+					
+				},
+				mounted () {
+					for(var i = 0; i < this.arr.length; i++){
+						this.arr[i].Num = i;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

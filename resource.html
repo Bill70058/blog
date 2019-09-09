@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#resource {
+				border-top: 1px solid black;
+				text-align: center;
+				width: 1000px;
+				height: 800px;
+				margin-right: -50px;
+			}
+			p{
+				font-size: 50px;
+			}
+			ul {
+				list-style: none;
+				line-height: 40px;
+			}
+			ul > li{
+				margin-left: 40px;				
+				list-style: inherit;
+				float: left;
+			}
+			li.block-item{
+				width: 146px;
+				height: 270px;
+				text-align: center;
+			}
+			li.book-img{
+				width: 130px;
+				height: 180px;
+			}
+			.book-img > a{
+				width: 130px;
+				height: 180px;
+			}
+			.book-img > a > img{
+				width: 130px;
+				height: 180px;
+			}
+			div.book-info{
+				width: 116px;
+				height: 90px;
+				margin: 0 0;
+				margin-top: -30px;
+				
+			}
+			h4.name{
+				width: 116px;
+				height: 44px;
+				line-height: 30px;
+				font-family: "Gill Sans", sans-serif;
+			}
+			div.author {
+				width: 116px;
+				height: 45px;
+				margin-top: -20px;
+				font-size: 14px;
+			}
+			img.downloadImg {
+				height: 20px;
+				width: 20px;
+				padding-top: 10px;
+			}
+			#more {
+				float: right;
+				top: 100%;
+			}
+			/* #more > a > p {
+				font-size: 20px;
+				color: #3b5998;
+			} */
+			.book-info > h4 > a:hover {
+				color: red;
+			}
+			.name > a:link{
+				color: #ee7711;
+			}
+			.name > a:active{
+				color: #ee7711;
+			}
+			.name > a:visited{
+				color: #3b5998;
+			}
+			*{
+				text-decoration: none;	
+			}
+		</style>
+		<script src="./js/vue2.js"></script>
+	</head>
+	<body>
+		<div id="resource">
+			<!-- <p>这里是资源页</p> -->
+			<ul>
+				<li class="block-item" v-for="item in book">
+					<div class="book-img">
+						<a href="#"><img :src="item.img" ></a>
+					</div>
+					
+					<div class="book-info">
+						<h4 class="name"><a href="#">
+							{{item.name}}
+						</a></h4>
+						<div class="author">
+							<span>{{item.author}}</span>
+							<a :href="item.path" :download="item.path" target="_blank"><img src="./image/下载.png" class="downloadImg"></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!-- <div id="more">
+				<a href="https://pan.baidu.com/s/1Ko6HM-Kw9mUtGLWFb7anKA"><p>更多电子书...</p></a>
+			</div> -->
+		</div>
+		
+		<script>
+			new Vue({
+				el: '#resource',
+				data:{
+					book: [
+						{name:'Head First Java',author:'中国电力出版',path:'https://pan.baidu.com/s/1bQ4e0-BRxXyAaYAR_jNR8g',img:'https://img.alicdn.com/imgextra/i1/1049653664/O1CN0124f1xC1cw9hhe0Pl3_!!0-item_pic.jpg_430x430q90.jpg'},
+						{name:'微信公众号开发教程',author:'大佬提供',path:'https://pan.baidu.com/s/1rzHiVCnp-cfLee3Ba8RFXQ',img:'./image/没有图片.png'},
+						{name:'Java核心知识点盘点',author:'大佬提供',path:'https://pan.baidu.com/s/1mC3Mpj4xaHHOqT2yS0Fyxw',img:'./image/没有图片.png'},
+						{name:'精通CSS高级Web标准...',author:'人民邮电出版',path:'https://pan.baidu.com/s/1DAUIsiNOU8ncOqf5aTQjnQ',img:'http://www.xz577.com/uploads/1904/1-1Z42P92P0H6.jpg'},
+						{name:'《21天精通微信小程序开发》',author:'中国工信出版',path:'https://pan.baidu.com/s/18J78t-ENjVW_du8dw7xhrQ',img:'https://img11.360buyimg.com/n1/jfs/t3949/284/2676812560/269512/e42ea95b/58ae4ce8N421adcdb.jpg'},
+						{name:'《React开发实战》',author:'清华大学出版',path:'https://pan.baidu.com/s/11P5z80hIcTyANUnAUn0_ZA',img:'https://img10.360buyimg.com/n1/jfs/t3118/216/9864313413/99288/e8ecc9b9/58d8b04eNab322655.jpg'},
+						{name:'《锋利的jQuery》',author:'人民邮电出版',path:'https://pan.baidu.com/s/11r-oQ-AioZsX2heyxm3KhA',img:'https://img.alicdn.com/imgextra/i3/3022849991/TB2waKJbxqK.eBjSZJiXXaOSFXa_!!3022849991.jpg_430x430q90.jpg'},
+						{name:'《深入浅出Webpack》',author:'电子工业出版',path:'https://pan.baidu.com/s/1m9MnHXIiCrZ0y0iRtK4Wag',img:'https://img.alicdn.com/imgextra/i3/2598292358/O1CN01fkrsVj1TI0P2xvoEu_!!2598292358.png_430x430q90.jpg'},
+						{name:'21天学通javascript',author:'电子工业出版',path:'https://pan.baidu.com/s/1MGMHJ9qMrwuV2N9ejyVVhQ',img:'https://img.alicdn.com/imgextra/i2/2455523162/O1CN01PwbKak1ZEEunIgp3x_!!0-item_pic.jpg_430x430q90.jpg'},
+						{name:'Bootstrap实战',author:'人民邮电出版',path:'https://pan.baidu.com/s/16FHWhyH_-V_yJ6xABtqwxw',img:'https://img.alicdn.com/imgextra/i2/2451699564/O1CN01Jid3fJ2KWMWsICCjl_!!0-item_pic.jpg_430x430q90.jpg'},
+						{name:'CSS禅意花园',author:'人民邮电出版',path:'https://pan.baidu.com/s/1y72p_xs8zIywtFtjkqNbdQ',img:'https://img13.360buyimg.com/n1/jfs/t1/69988/29/5547/16975/5d3aa761E3d69dd9c/3c374500e63f5fe6.jpg'},
+						{name:'es6标准入门',author:'电子工业出版',path:'https://pan.baidu.com/s/1sP_zFtXoRjbs_W_AapNCOA',img:'https://img.alicdn.com/imgextra/i2/2598292358/TB23RBKkGSWBuNjSsrbXXa0mVXa_!!2598292358.png_430x430q90.jpg'},
+						{name:'HTML5权威指南',author:'人民邮电出版',path:'https://pan.baidu.com/s/1nXWgd5QLy2pbOO94VX2Bxw',img:'https://img.alicdn.com/imgextra/i2/TB1cJdFGXXXXXXVaXXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg'},
+						{name:'JavaScript异步编程',author:'人民邮电出版',path:'https://pan.baidu.com/s/1HX6xvPjiqXUNOFVzUZC9Yw',img:'https://img.alicdn.com/imgextra/i4/2191160435/TB10BYtqNGYBuNjy0FnXXX5lpXa_!!0-item_pic.jpg_430x430q90.jpg'},
+						{name:'vue.js实战',author:'清华大学出版',path:'https://pan.baidu.com/s/1cra8j9P768h00_lUbKBscA',img:'https://img.alicdn.com/imgextra/i4/2406931838/TB1gJiIeRLN8KJjSZFpXXbZaVXa_!!0-item_pic.jpg_430x430q90.jpg'},										
+					]
+				},
+				methods:{
+
+				},
+				mounted() {
+					var click_cnt = 0;
+					var $html = document.getElementsByTagName("html")[0];
+					var $body = document.getElementsByTagName("body")[0];
+					$html.onclick = function(e) {
+					    var $elem = document.createElement("b");
+					    $elem.style.color = "#E94F06";
+					    $elem.style.zIndex = 9999;
+					    $elem.style.position = "absolute";
+					    $elem.style.select = "none";
+					    var x = e.pageX;
+					    var y = e.pageY;
+					    $elem.style.left = (x - 10) + "px";
+					    $elem.style.top = (y - 20) + "px";
+					    clearInterval(anim);
+					    switch (++click_cnt) {
+					        case 10:
+					            $elem.innerText = "OωO";
+					            break;
+					        case 20:
+					            $elem.innerText = "(๑•́ ∀ •̀๑)";
+					            break;
+					        case 30:
+					            $elem.innerText = "(๑•́ ₃ •̀๑)";
+					            break;
+					        case 40:
+					            $elem.innerText = "(๑•̀_•́๑)";
+					            break;
+					        case 50:
+					            $elem.innerText = "（￣へ￣）";
+					            break;
+					        case 60:
+					            $elem.innerText = "(╯°口°)╯(┴—┴";
+					            break;
+					        case 70:
+					            $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+					            break;
+					        case 80:
+					            $elem.innerText = "╮(｡>口<｡)╭";
+					            break;
+					        case 90:
+					            $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+					            break;
+					        case 100:
+					        case 101:
+					        case 102:
+					        case 103:
+					        case 104:
+					        case 105:
+					            $elem.innerText = "(ꐦ°᷄д°᷅)";
+					            break;
+					        default:
+						// 手动更换下面这行双引号里面的内容 如"😀"
+					            $elem.innerText = "❤";
+					            break;
+					    }
+					    $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+					    var increase = 0;
+					    var anim;
+					    setTimeout(function() {
+					    	anim = setInterval(function() {
+					            if (++increase == 150) {
+					                clearInterval(anim);
+							$body.removeChild($elem);
+					            }
+					            $elem.style.top = y - 20 - increase + "px";
+					            $elem.style.opacity = (150 - increase) / 120;
+					        }, 8);
+					    }, 70);
+					    $body.appendChild($elem);
+					};
+				}
+			})
+			// window.onload = function(){
+			// 	var click_cnt = 0;
+			// 	var $html = document.getElementsByTagName("html")[0];
+			// 	var $body = document.getElementsByTagName("body")[0];
+			// 	$html.onclick = function(e) {
+			// 	    var $elem = document.createElement("b");
+			// 	    $elem.style.color = "#E94F06";
+			// 	    $elem.style.zIndex = 9999;
+			// 	    $elem.style.position = "absolute";
+			// 	    $elem.style.select = "none";
+			// 	    var x = e.pageX;
+			// 	    var y = e.pageY;
+			// 	    $elem.style.left = (x - 10) + "px";
+			// 	    $elem.style.top = (y - 20) + "px";
+			// 	    clearInterval(anim);
+			// 	    switch (++click_cnt) {
+			// 	        case 10:
+			// 	            $elem.innerText = "OωO";
+			// 	            break;
+			// 	        case 20:
+			// 	            $elem.innerText = "(๑•́ ∀ •̀๑)";
+			// 	            break;
+			// 	        case 30:
+			// 	            $elem.innerText = "(๑•́ ₃ •̀๑)";
+			// 	            break;
+			// 	        case 40:
+			// 	            $elem.innerText = "(๑•̀_•́๑)";
+			// 	            break;
+			// 	        case 50:
+			// 	            $elem.innerText = "（￣へ￣）";
+			// 	            break;
+			// 	        case 60:
+			// 	            $elem.innerText = "(╯°口°)╯(┴—┴";
+			// 	            break;
+			// 	        case 70:
+			// 	            $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+			// 	            break;
+			// 	        case 80:
+			// 	            $elem.innerText = "╮(｡>口<｡)╭";
+			// 	            break;
+			// 	        case 90:
+			// 	            $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+			// 	            break;
+			// 	        case 100:
+			// 	        case 101:
+			// 	        case 102:
+			// 	        case 103:
+			// 	        case 104:
+			// 	        case 105:
+			// 	            $elem.innerText = "(ꐦ°᷄д°᷅)";
+			// 	            break;
+			// 	        default:
+			// 		// 手动更换下面这行双引号里面的内容 如"😀"
+			// 	            $elem.innerText = "❤";
+			// 	            break;
+			// 	    }
+			// 	    $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+			// 	    var increase = 0;
+			// 	    var anim;
+			// 	    setTimeout(function() {
+			// 	    	anim = setInterval(function() {
+			// 	            if (++increase == 150) {
+			// 	                clearInterval(anim);
+			// 			$body.removeChild($elem);
+			// 	            }
+			// 	            $elem.style.top = y - 20 - increase + "px";
+			// 	            $elem.style.opacity = (150 - increase) / 120;
+			// 	        }, 8);
+			// 	    }, 70);
+			// 	    $body.appendChild($elem);
+			// 	};
+			// }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/vue2.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="./bootstrap.css">
+		<style>
+			#font > p{
+				font-size: 50px;
+				text-align: center;
+			}
+			.danger:hover {
+				background: #f2dede;
+			}
+			.success:hover {
+				background: #dff0d8;
+			}
+			.head{
+				background: #f5f5f5;
+			}
+			a{
+				text-decoration: none;	
+			}
+			a:hover{
+				text-decoration: none;
+				color: #ee7711;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<table class="table table-condensed">
+				<tr class="head">
+					<th scope="row">#</th>
+					<th>课程名称</th>
+					<th>是否免费</th>
+				</tr>
+				<tr :class="item.className" v-for="item in arr">
+					<th scope="row">{{item.Num}}</th>
+					<td><a :href="item.path" target="_blank">{{item.name}}</a></td>
+					<td>{{item.judge}}</td>
+				</tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',
+				data:{
+					arr:[
+						{Num:'',className:'danger',name:'Vue',path:'https://study.163.com/course/courseMain.htm?courseId=1004979009&share=1&shareId=1029349344',judge:'free'},
+						{Num:'',className:'danger',name:'微信小程序',path:'https://study.163.com/course/courseMain.htm?courseId=1208961810',judge:'pay'},
+						{Num:'',className:'success',name:'bootstrap',path:'https://www.bilibili.com/video/av26527953?from=search&seid=11657252486491589549',judge:'free'},
+						{Num:'',className:'success',name:'bootstrap -- 新闻类型',path:'https://www.bilibili.com/video/av10373326?from=search&seid=11657252486491589549',judge:'free'},
+						{Num:'',className:'success',name:'jquery -- 黑马',path:'https://www.bilibili.com/video/av40716170?from=search&seid=9667263622158196613',judge:'free'},
+						{Num:'',className:'success',name:'前端基础综合',path:'https://www.bilibili.com/video/av38608798?from=search&seid=3994707057801563077',judge:'free'},
+						{Num:'',className:'danger',name:'Node.js',path:'https://study.163.com/course/courseMain.htm?courseId=1004726027&share=1&shareId=1029349344',judge:'pay'},
+						{Num:'',className:'danger',name:'React',path:'https://study.163.com/course/courseMain.htm?courseId=1005170032&share=1&shareId=1029349344',judge:'pay'},
+						{Num:'',className:'success',name:'Java基础',path:'https://study.163.com/course/courseMain.htm?courseId=1004014054',judge:'free'}
+					]
+				},
+				methods: {
+					
+				},
+				mounted () {
+					for(var i = 0; i < this.arr.length; i++){
+						this.arr[i].Num = i;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
